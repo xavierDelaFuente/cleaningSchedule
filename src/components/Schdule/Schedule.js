@@ -1,19 +1,32 @@
 import React from "react";
 import "./Schedule.css";
-import { initialDate } from "../../data/constants";
+import { getCurrentWeek } from "../../data/constants";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getMemberSchedule } from "../../selectors/schedule";
-// import { getCurrentMember } from "../../selectors/members";
-// import { replaceCurrentMember } from "../../actions/members";
+import { useSelector } from "react-redux";
+import { getMemberSchedule, getSchedule } from "../../selectors/schedule";
 
-const Schedule = ({ subject }) => {
+const Schedule = () => {
   const currentMember = useSelector(state => state.schedule.currentMember);
-  const membersTasks = getMemberSchedule(currentMember);
+  const membersTasks = currentMember
+    ? getMemberSchedule(currentMember)
+    : getSchedule();
   return (
     <div className="Schedule">
-      <div>{initialDate}</div>
-      {membersTasks && membersTasks.map(task => <h3>{task}</h3>)}
+      {currentMember ? (
+        <div>
+          <h2> {currentMember}, Esta semana te toca: </h2>
+          <h1>{membersTasks[getCurrentWeek]}</h1>
+        </div>
+      ) : (
+        Object.entries(membersTasks).map(([member, memberTask]) => (
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <h3>{member}</h3>
+            {memberTask.map(task => (
+              <h3>{task}</h3>
+            ))}
+          </div>
+        ))
+      )}
     </div>
   );
 };
