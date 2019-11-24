@@ -1,6 +1,6 @@
 export default {
-  Marta: ["Cocina", "Comedor", "Baño", "Pasillo"],
-  Ruben: ["Comedor", "Baño", "Pasillo", "Cocina"],
-  Xavi: ["Baño", "Pasillo", "Cocina", "Comedor"],
-  Amin: ["Pasillo", "Cocina", "Comedor", "Baño"]
+  Marta: ["Cocina", "Comedor", "Pasillo", "Baño"],
+  Ruben: ["Comedor", "Pasillo", "Baño", "Cocina"],
+  Xavi: ["Baño", "Cocina", "Comedor", "Pasillo"],
+  Amin: ["Pasillo", "Baño", "Cocina", "Comedor"]
 };
