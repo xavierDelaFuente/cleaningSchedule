@@ -11,18 +11,23 @@ const Schedule = () => {
     ? getMemberSchedule(currentMember)
     : getSchedule();
   return (
-    <div className="Schedule">
+    <div className="Schedule" data-testid="schedule">
       {currentMember ? (
         <div>
-          <h2> {currentMember}, Esta semana te toca: </h2>
-          <h1>{membersTasks[getCurrentWeek]}</h1>
+          <h2 data-testid="member"> {currentMember}, Esta semana te toca: </h2>
+          <h1 data-testid="task">{membersTasks[getCurrentWeek]}</h1>
         </div>
       ) : (
         Object.entries(membersTasks).map(([member, memberTask]) => (
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <h3>{member}</h3>
+          <div
+            style={{ display: "flex", justifyContent: "space-around" }}
+            key={member}
+          >
+            <h2 data-testid="member">{member}</h2>
             {memberTask.map(task => (
-              <h3>{task}</h3>
+              <h1 data-testid="task" key={task}>
+                {task}
+              </h1>
             ))}
           </div>
         ))

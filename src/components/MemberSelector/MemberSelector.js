@@ -9,7 +9,7 @@ const MemberSelector = () => {
   const members = getScheduleMembersId();
 
   return (
-    <div className="MemberSelector">
+    <div className="MemberSelector" data-testid="member-selector">
       <button onClick={() => dispatch(replaceCurrentMember(null))}>
         Full schedule
       </button>
@@ -21,6 +21,8 @@ const MemberSelector = () => {
                 dispatch(replaceCurrentMember(value))
               }
               value={member}
+              key={member}
+              data-testid={`member-${member}`}
             >
               {member}
             </button>
