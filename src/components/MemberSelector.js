@@ -12,8 +12,8 @@ const MemberSelector = () => {
     <button
       css={{
         borderRadius: "12em",
-        border: "0.1em solid #2ecc71",
-        color: "#2ecc71",
+        border: "0.1em solid #24a159",
+        color: "#24a159",
         overflow: "hidden",
         background: "white",
         fontSize: "2em"

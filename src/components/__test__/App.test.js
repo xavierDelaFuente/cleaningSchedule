@@ -6,6 +6,8 @@ import reducer from "../../reducers/index";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
+import {SCHEDULE_ROWS} from "../../data/schedule"
+
 import { getScheduleMembersId } from "../../selectors/schedule";
 
 function renderWithRedux(
@@ -49,7 +51,7 @@ describe("Schedule: ", () => {
   test("renders all a row with member name and all tasks for all member by default", () => {
     ({ getAllByTestId } = renderWithRedux(<App />));
     expect(getAllByTestId("member").length).toBe(4);
-    expect(getAllByTestId("task").length).toBe(4 * 4);
+    expect(getAllByTestId("task").length).toBe(4 * 6);
   });
 
   test("when clicking a member, it displays it s current task", () => {
@@ -64,6 +66,6 @@ describe("Schedule: ", () => {
     fireEvent.click(getByTestId("member-Xavi"));
     fireEvent.click(getByText("Full schedule"));
     expect(getAllByTestId("member").length).toBe(4);
-    expect(getAllByTestId("task").length).toBe(4 * 4);
+    expect(getAllByTestId("task").length).toBe(4 * 6);
   });
 });
