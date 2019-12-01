@@ -1,27 +1,28 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import uuid from 'react-uuid'
 import { getCurrentWeek } from "../data/constants";
 
 import { useSelector } from "react-redux";
-import { getMemberSchedule, getSchedule } from "../selectors/schedule";
+import { getMemberSchedule, getCurrentSchedule } from "../selectors/schedule";
 
 const Schedule = () => {
   const currentMember = useSelector(state => state.schedule.currentMember);
   const membersTasks = currentMember
     ? getMemberSchedule(currentMember)
-    : getSchedule();
+    : getCurrentSchedule();
 
   const MemberTasks = ({ memberTask }) =>
     memberTask.map((task, iteration) => (
       <h1
         data-testid="task"
-        key={task}
+        key={uuid()}
         css={{
           borderTop: "2px solid black",
           borderBottom: "2px solid black",
           borderLeft: "none",
           borderRight: "none",
-          color: iteration === 0 ? "black" : "lightgrey"
+          color: iteration === getCurrentWeek ? "black" : "lightgrey"
         }}
       >
         {task}
@@ -36,7 +37,7 @@ const Schedule = () => {
         flexDirection: "column",
         width: "25%"
       }}
-      key={member}
+      key={uuid()}
     >
       <h2 data-testid="member">{member}</h2>
       <MemberTasks memberTask={memberTask} />
@@ -67,7 +68,7 @@ const Schedule = () => {
         />
       ) : (
         Object.entries(membersTasks).map(([member, memberTask]) => (
-          <Member memberTask={memberTask} member={member} key={member} />
+          <Member memberTask={memberTask} member={member} key={uuid()} />
         ))
       )}
     </div>
